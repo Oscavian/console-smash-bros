@@ -9,10 +9,11 @@
 class Display {
 public:
     Display();
-    static void printTitleScreen();
-    static void printChooseCharacter();
+    static void drawTitleScreen();
+    static void drawChooseCharacter();
     static void wait();
     static void clearScreen();
+    void drawFight();
 
 
 

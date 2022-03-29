@@ -3,3 +3,11 @@
 //
 
 #include "../header/Ability.h"
+
+Ability::Ability() {
+
+}
+
+Ability::~Ability() {
+
+}
