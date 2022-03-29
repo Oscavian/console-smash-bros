@@ -169,8 +169,13 @@ void Display::printStatusMessage(const std::string &message) {
 }
 
 void Display::drawFight(Fighter &fighter1, Fighter &fighter2, std::string &statusMsg) {
-    std::cout << fighter1.getSplashArt() << std::endl;
+    std::cout << fighter1.getSplashArt() << std::endl << "Damage: " << fighter1.getDamage() << " %" << std::endl;
+    std::cout << "-----------------------------------\n";
+    std::cout << fighter1.getName() << std::endl;
     std::cout << "VS\n";
+    std::cout << fighter2.getName() << std::endl;
+    std::cout << "-----------------------------------\n";
+    std::cout << "Damage: " << fighter2.getDamage() << " %" <<  std::endl;
     std::cout << fighter2.getSplashArt() << std::endl;
     std::cout << statusMsg << std::endl;
 

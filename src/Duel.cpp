@@ -5,6 +5,10 @@
 #include "../header/Duel.h"
 #include "../header/fighter/Crewmate.h"
 #include "../header/abilities/Tackle.h"
+#include "../header/abilities/Slap.h"
+#include "../header/abilities/Flamethrower.h"
+#include "../header/abilities/IdiotSandwich.h"
+#include "../header/abilities/RickRoll.h"
 
 Duel::Duel() {
     this->fighter1 = nullptr;
@@ -13,19 +17,10 @@ Duel::Duel() {
 
 void Duel::chooseCharacter() {
     Display::drawChooseCharacter();
-    //std::string choice = Game::getStringInput();
     int option;
     option = Game::getNumericInput();
-    /*if (choice == "Elon" || choice == "Elon Musk"){
-        option = 1;
-    } else if (choice == "Rick" || choice == "Rick Astley"){
-        option = 2;
-    } else if (choice == "Gordon" || choice == "Gordon Ramsay") {
-        option = 3;
-    } else {
-        option = 4;
-    }*/
 
+    Display::printStatusMessage("Player 1");
     switch (option) {
         case 1:
             fighter1 = new Elon();
@@ -41,14 +36,74 @@ void Duel::chooseCharacter() {
             break;
         case 4:
             Display::printStatusMessage("You chose the Crewmate, proceeding with ability selection...");
-            Display::printStatusMessage("What generic Ability do you want?\n[1] Tackle\n[2] Slap");
-            Display::printStatusMessage("You chose Tackle twice!"); //TODO remove and enhance
-            fighter1 = new Crewmate(new Tackle(), new Tackle());
+            fighter1 = createCustomCharacter();
             break;
         default:
             break;
     }
     Display::wait();
+    Display::drawChooseCharacter();
+
+    option = Game::getNumericInput();
+
+    Display::printStatusMessage("Player 2");
+    switch (option) {
+        case 1:
+            fighter2 = new Elon();
+            Display::printStatusMessage("You chose Elon Musk!");
+            break;
+        case 2:
+            fighter2 = new Rick();
+            Display::printStatusMessage("You chose Rick Astley!");
+            break;
+        case 3:
+            fighter2 = new Gordon();
+            Display::printStatusMessage("You chose Gordon Ramsay!");
+            break;
+        case 4:
+            Display::printStatusMessage("You chose the Crewmate, proceeding with ability selection...");
+            fighter2 = createCustomCharacter();
+            break;
+        default:
+            break;
+    }
+    Display::wait();
+}
+
+Fighter* Duel::createCustomCharacter() {
+    Display::printStatusMessage("What generic Ability do you want?\n[1] Tackle\n[2] Slap");
+    int option = Game::getNumericInput();
+    Ability* generic = nullptr;
+    switch (option) {
+        case 1:
+            generic = new Tackle();
+            break;
+        case 2:
+            generic = new Slap();
+            break;
+        default:
+            break;
+    }
+    Display::printStatusMessage("What special Ability do you want?\n[1] Flamethrower\n[2] IdiotSandwich\n[3] Rick Roll");
+    option = Game::getNumericInput();
+    Ability* special = nullptr;
+    switch (option) {
+        case 1:
+            special = new Flamethrower();
+            break;
+        case 2:
+            special = new IdiotSandwich();
+            break;
+        case 3:
+            special = new RickRoll();
+            break;
+        default:
+            break;
+    }
+
+    Display::printStatusMessage("Custom character created!");
+    sleep(1);
+    return new Crewmate(generic, special);
 }
 
 Duel::~Duel() {
@@ -59,12 +114,12 @@ Duel::~Duel() {
 void Duel::initFight() {
     chooseCharacter();
 
-    fighter2 = new Crewmate(new Tackle(), new Tackle()); //TODO remove
-    Display::clearScreen();
     std::string statusMsg;
 
     while (fighter1->getDamage() < 300 && fighter2->getDamage() < 300){
+        Display::clearScreen();
         Display::drawFight(*fighter1, *fighter2, statusMsg);
+        Display::printStatusMessage("\b" + fighter1->getName() + "s turn!");
         Display::printStatusMessage("Choose your next action: \n[1] " + fighter1->getGenericAbility()->getName() + "\n[2] " + fighter1->getSpecialAbility()->getName() + "\n[3] Give up");
         int option = Game::getNumericInput();
         switch (option) {
@@ -83,6 +138,7 @@ void Duel::initFight() {
         }
         Display::clearScreen();
         Display::drawFight(*fighter1, *fighter2, statusMsg);
+        Display::printStatusMessage(fighter2->getName() + "s turn!");
         Display::printStatusMessage("Choose your next action: \n[1] " + fighter2->getGenericAbility()->getName() + "\n[2] " + fighter2->getSpecialAbility()->getName() + "\n[3] Give up");
         option = Game::getNumericInput();
         switch (option) {
@@ -100,7 +156,6 @@ void Duel::initFight() {
                 break;
         }
     }
-
 }
 
 /*void Duel::chooseAction(Fighter &performer, Fighter &target) {

@@ -2,16 +2,16 @@
 // Created by Oskar on 29.03.2022.
 //
 
-#include "../../header/abilities/Tackle.h"
+#include "../../header/abilities/Slap.h"
 #include "../../header/Display.h"
 
-void Tackle::execute(Fighter &performer, Fighter &target) {
-    Display::printStatusMessage(performer.getName() + " uses Tackle!");
+Slap::Slap() {
+    name = "Slap";
+}
+
+void Slap::execute(Fighter &performer, Fighter &target) {
+    Display::printStatusMessage(performer.getName() + " uses Slap!");
     int damage = target.takeDamage(performer.getAttackDamage());
     Display::printStatusMessage(target.getName() + " took " + std::to_string(damage) + " percent damage");
     sleep(3);
-}
-
-Tackle::Tackle() {
-    name = "Tackle";
 }

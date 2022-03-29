@@ -16,6 +16,7 @@ public:
     Duel();
     ~Duel();
     void chooseCharacter();
+    Fighter* createCustomCharacter();
     void chooseAction(Fighter &performer, Fighter &target);
     void initFight();
 private:

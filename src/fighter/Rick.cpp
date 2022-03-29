@@ -11,8 +11,8 @@ Rick::Rick() {
     m_baseAgility = 8;
     m_baseAttackDamage = 8;
     m_baseDefence = 4;
-    m_genericAbility = new Tackle(); //TODO
-    m_specialAbility = new RickRoll(); //TODO
+    m_genericAbility = new Tackle();
+    m_specialAbility = new RickRoll();
     m_splashArt = R"(
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

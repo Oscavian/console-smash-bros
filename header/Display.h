@@ -5,10 +5,13 @@
 #ifndef CONSOLE_SMASH_BROS_DISPLAY_H
 #define CONSOLE_SMASH_BROS_DISPLAY_H
 
-
+#include <unistd.h>
 #include <string>
 #include "Fighter.h"
-
+#if defined(_WIN32)
+#include <windows.h>
+#include <shellapi.h>
+#endif
 class Display {
 public:
     Display();

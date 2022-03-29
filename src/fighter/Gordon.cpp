@@ -3,7 +3,7 @@
 //
 
 #include "../../header/fighter/Gordon.h"
-#include "../../header/abilities/Tackle.h"
+#include "../../header/abilities/Slap.h"
 #include "../../header/abilities/IdiotSandwich.h"
 
 Gordon::Gordon() {
@@ -11,7 +11,7 @@ Gordon::Gordon() {
     m_baseAgility = 4;
     m_baseAttackDamage = 12;
     m_baseDefence = 8;
-    m_genericAbility = new Tackle();
+    m_genericAbility = new Slap();
     m_specialAbility = new IdiotSandwich();
 
     m_splashArt = R"(
