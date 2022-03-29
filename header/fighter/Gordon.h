@@ -7,9 +7,9 @@
 
 #include "../Fighter.h"
 class Gordon : public Fighter {
+public:
     Gordon();
     ~Gordon();
-
 };
 
 

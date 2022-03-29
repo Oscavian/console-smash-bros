@@ -11,3 +11,7 @@ Ability::Ability() {
 Ability::~Ability() {
 
 }
+
+std::string Ability::getName() const {
+    return name;
+}

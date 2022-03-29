@@ -8,7 +8,9 @@
 #include "../Ability.h"
 
 class RickRoll : public Ability {
-
+public:
+    RickRoll();
+    void execute(Fighter &performer, Fighter &target);
 };
 
 

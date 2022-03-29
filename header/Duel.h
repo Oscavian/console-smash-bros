@@ -7,12 +7,16 @@
 #include "Fighter.h"
 #include "Display.h"
 #include "Game.h"
+#include "fighter/Elon.h"
+#include "fighter/Rick.h"
+#include "fighter/Gordon.h"
 
 class Duel {
 public:
     Duel();
     ~Duel();
     void chooseCharacter();
+    void chooseAction(Fighter &performer, Fighter &target);
     void initFight();
 private:
     Fighter* fighter1;

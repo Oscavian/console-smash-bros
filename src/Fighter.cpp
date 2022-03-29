@@ -5,16 +5,21 @@
 #include "../header/Fighter.h"
 
 Fighter::Fighter() : m_agilityModifier(0), m_damagePercent(0), m_baseAgility(0), m_baseDefence(0), m_defenceModifier(0), m_attackModifier(0), m_baseAttackDamage(0), m_genericAbility(
-        nullptr), m_specialAbility(nullptr) {}
-
-Fighter::~Fighter() {
-
+        nullptr), m_specialAbility(nullptr) {
 }
 
-void Fighter::takeDamage(int percentage) {
+Fighter::~Fighter() {
+    delete m_genericAbility;
+    delete m_specialAbility;
+}
+
+int Fighter::takeDamage(int percentage) {
     m_damagePercent += percentage - getDefence();
     if (m_damagePercent < 0) {
         m_damagePercent = 0;
+        return 0;
+    } else {
+        return percentage - getDefence();
     }
 }
 
@@ -66,9 +71,25 @@ void Fighter::setDefenceModifier(int value) {
 }
 
 void Fighter::useGenericAbility(Fighter &opponent) {
-    m_genericAbility->execute(this, opponent);
+    m_genericAbility->execute(*this, opponent);
 }
 
 void Fighter::useSpecialAbility(Fighter &opponent) {
-    m_specialAbility->execute(this, opponent);
+    m_specialAbility->execute(*this, opponent);
+}
+
+std::string Fighter::getName() const {
+    return m_name;
+}
+
+std::string Fighter::getSplashArt() const {
+    return m_splashArt;
+}
+
+Ability* Fighter::getGenericAbility() {
+    return m_genericAbility;
+}
+
+Ability* Fighter::getSpecialAbility() {
+    return m_specialAbility;
 }

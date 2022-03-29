@@ -8,10 +8,9 @@
 #include "../Fighter.h"
 
 class Elon : public Fighter{
+public:
     Elon();
     ~Elon() override;
-
-
 };
 
 

@@ -6,6 +6,9 @@
 #define CONSOLE_SMASH_BROS_DISPLAY_H
 
 
+#include <string>
+#include "Fighter.h"
+
 class Display {
 public:
     Display();
@@ -13,9 +16,9 @@ public:
     static void drawChooseCharacter();
     static void wait();
     static void clearScreen();
-    void drawFight();
-
-
+    static void drawFight(Fighter &fighter1, Fighter &fighter2, std::string &statusMsg);
+    static void drawMenu();
+    static void printStatusMessage(const std::string& message);
 
 };
 

@@ -15,6 +15,7 @@ public:
     void startGame();
     void mainMenu();
     static int getNumericInput();
+    static std::string getStringInput();
 private:
     Duel* fight;
 };
