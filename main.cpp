@@ -3,8 +3,9 @@
 //
 #include <iostream>
 #include "header/Display.h"
+#include "header/Game.h"
 int main() {
-    Display::printTitleScreen();
-    Display::printChooseCharacter();
+    Game game;
+    game.startGame();
     return 0;
 };
