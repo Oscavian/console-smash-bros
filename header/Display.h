@@ -13,6 +13,7 @@ public:
     static void printChooseCharacter();
     static void wait();
     static void clearScreen();
+    static void drawMenu();
 
 
 
