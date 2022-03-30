@@ -4,7 +4,7 @@
 #include "header/Game.h"
 #include <cstdlib>
 int main() {
-    srand(time(NULL));
+    srand(time(nullptr));
     Game game;
     game.startGame();
     return 0;

@@ -22,7 +22,7 @@ void Flamethrower::execute(Fighter &performer, Fighter &target) {
 
     int randDmg = 0;
     while (randDmg != 4){
-        randDmg = rand() % 5;
+        randDmg = rand() % 10;
         Display::printStatusMessage("BURN! " + target.getName() + " took " + std::to_string(target.takeDamage(randDmg)) + " damage!");
         sleep(1);
     }

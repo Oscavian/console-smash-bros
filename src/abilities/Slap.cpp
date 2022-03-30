@@ -11,7 +11,15 @@ Slap::Slap() {
 
 void Slap::execute(Fighter &performer, Fighter &target) {
     Display::printStatusMessage(performer.getName() + " uses Slap!");
-    int damage = target.takeDamage(performer.getAttackDamage());
+    int random = rand() % 100;
+    int damage = 0;
+    if (random > 90){
+        damage = target.takeDamage(performer.getAttackDamage() * 2);
+        Display::printStatusMessage(performer.getName() + " hit the super Slap!");
+    } else if (random <= 90) {
+        damage = target.takeDamage(performer.getAttackDamage());
+    }
+
     Display::printStatusMessage(target.getName() + " took " + std::to_string(damage) + " percent damage");
     sleep(3);
 }

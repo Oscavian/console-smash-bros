@@ -8,9 +8,9 @@
 
 Gordon::Gordon() {
     m_name = "Gordon Ramsay";
-    m_baseAgility = 4;
-    m_baseAttackDamage = 12;
-    m_baseDefence = 8;
+    m_baseAgility = 3 + rand() % 3;
+    m_baseAttackDamage = 18;
+    m_baseDefence = 5;
     m_genericAbility = new Slap();
     m_specialAbility = new IdiotSandwich();
 

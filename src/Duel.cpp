@@ -119,60 +119,107 @@ void Duel::initFight() {
     while (fighter1->getDamage() < 300 && fighter2->getDamage() < 300){
         Display::clearScreen();
         Display::drawFight(*fighter1, *fighter2, statusMsg);
-        Display::printStatusMessage("\b" + fighter1->getName() + "s turn!");
+        Display::printStatusMessage("\b" + fighter1->getName() + "!");
         Display::printStatusMessage("Choose your next action: \n[1] " + fighter1->getGenericAbility()->getName() + "\n[2] " + fighter1->getSpecialAbility()->getName() + "\n[3] Give up");
-        int option = Game::getNumericInput();
-        switch (option) {
-            case 1:
-                fighter1->useGenericAbility(*fighter2);
-                break;
-            case 2:
-                fighter1->useSpecialAbility(*fighter2);
-                break;
-            case 3:
-                Display::printStatusMessage(fighter1->getName() + "gave up!");
-                Display::wait();
-                return;
-            default:
-                break;
-        }
+        int optionF1 = Game::getNumericInput();
         Display::clearScreen();
         Display::drawFight(*fighter1, *fighter2, statusMsg);
-        Display::printStatusMessage(fighter2->getName() + "s turn!");
+        Display::printStatusMessage(fighter2->getName() + "!");
         Display::printStatusMessage("Choose your next action: \n[1] " + fighter2->getGenericAbility()->getName() + "\n[2] " + fighter2->getSpecialAbility()->getName() + "\n[3] Give up");
-        option = Game::getNumericInput();
-        switch (option) {
-            case 1:
-                fighter2->useGenericAbility(*fighter1);
-                break;
-            case 2:
-                fighter2->useSpecialAbility(*fighter1);
-                break;
-            case 3:
-                Display::printStatusMessage(fighter2->getName() + "gave up!");
+        int optionF2 = Game::getNumericInput();
+        int random = (rand() % 250) + 50;
+
+        if (fighter1->getAgility() + rand() % 3 > fighter2->getAgility() + rand() % 3){
+            switch (optionF1) {
+                case 1:
+                    fighter1->useGenericAbility(*fighter2);
+                    break;
+                case 2:
+                    fighter1->useSpecialAbility(*fighter2);
+                    break;
+                case 3:
+                    Display::printStatusMessage(fighter1->getName() + "gave up!");
+                    Display::wait();
+                    return;
+                default:
+                    break;
+            }
+
+            if (random < fighter2->getDamage()){
+                Display::printStatusMessage(fighter2->getName() + "got eliminated!\n" + fighter1->getName() + " wins!");
                 Display::wait();
                 return;
-            default:
-                break;
+            }
+
+            switch (optionF2) {
+                case 1:
+                    fighter2->useGenericAbility(*fighter1);
+                    break;
+                case 2:
+                    fighter2->useSpecialAbility(*fighter1);
+                    break;
+                case 3:
+                    Display::printStatusMessage(fighter2->getName() + "gave up!");
+                    Display::wait();
+                    return;
+                default:
+                    break;
+            }
+
+            if (random < fighter1->getDamage()){
+                Display::printStatusMessage(fighter1->getName() + "got eliminated!\n" + fighter2->getName() + " wins!");
+                Display::wait();
+                return;
+            }
+
+            sleep(1);
+
+        } else {
+            switch (optionF2) {
+                case 1:
+                    fighter2->useGenericAbility(*fighter1);
+                    break;
+                case 2:
+                    fighter2->useSpecialAbility(*fighter1);
+                    break;
+                case 3:
+                    Display::printStatusMessage(fighter2->getName() + "gave up!");
+                    Display::wait();
+                    return;
+                default:
+                    break;
+            }
+
+            if (random < fighter1->getDamage()){
+                Display::printStatusMessage(fighter1->getName() + "got eliminated!\n" + fighter2->getName() + " wins!");
+                Display::wait();
+                return;
+            }
+
+            sleep(1);
+
+            switch (optionF1) {
+                case 1:
+                    fighter1->useGenericAbility(*fighter2);
+                    break;
+                case 2:
+                    fighter1->useSpecialAbility(*fighter2);
+                    break;
+                case 3:
+                    Display::printStatusMessage(fighter1->getName() + "gave up!");
+                    Display::wait();
+                    return;
+                default:
+                    break;
+            }
+
+            if (random < fighter2->getDamage()){
+                Display::printStatusMessage(fighter2->getName() + "got eliminated!\n" + fighter1->getName() + " wins!");
+                Display::wait();
+                return;
+            }
         }
+
+
     }
 }
-
-/*void Duel::chooseAction(Fighter &performer, Fighter &target) {
-    Display::printStatusMessage("Choose your next action: \n[1] " + performer.getGenericAbility()->getName() + "\n[2] " + performer.getSpecialAbility()->getName() + "\n[3] Give up");
-    int option = Game::getNumericInput();
-    switch (option) {
-        case 1:
-            performer.useGenericAbility(target);
-            break;
-        case 2:
-            performer.useSpecialAbility(target);
-            break;
-        case 3:
-            Display::printStatusMessage(performer.getName() + "gave up!");
-            Display::wait();
-            return;
-        default:
-            break;
-    }
-}*/

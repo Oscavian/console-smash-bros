@@ -6,6 +6,10 @@
 #define CONSOLE_SMASH_BROS_GAME_H
 #include "Duel.h"
 #include "Display.h"
+#include <string>
+#include "iostream"
+
+#include <conio.h>
 class Duel;
 
 class Game {
@@ -15,7 +19,6 @@ public:
     void startGame();
     void mainMenu();
     static int getNumericInput();
-    static std::string getStringInput();
 private:
     Duel* fight;
 };

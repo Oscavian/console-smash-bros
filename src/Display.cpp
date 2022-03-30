@@ -2,6 +2,7 @@
 // Created by oskar on 24.03.22.
 //
 
+#include <conio.h>
 #include "../header/Display.h"
 #include "iostream"
 
@@ -130,11 +131,15 @@ void Display::drawChooseCharacter() {
 }
 
 void Display::wait() {
-    std::string anyKey;
+    char anyKey;
     std::cout << "Press any key...";
+#if defined(_WIN32)
+    anyKey = getch();
+#elif defined(__linux__)
     std::cin >> anyKey;
-    std::cin.ignore();
+#endif
     std::cin.clear();
+    std::cin.ignore(123, '\n');
     clearScreen();
 }
 
@@ -157,10 +162,10 @@ void Display::drawMenu() {
    \/_/ \/_/\/__/\/_/ \/_/\/_/\/_/    \/_/ \/_/\/____/\/_/\/_/\/___/
 )";
 
-    std::cout << "[1] Single Smash\n"
-                 "[2] Multiplayer Smash\n"
-                 "[3] Character Gallery\n"
-                 "[4] Options\n"
+    std::cout << "[1] 1v1 Smash\n"
+                 "[2] Team Smash\n"
+                 "[3] Character Statistics\n"
+                 "[4] Guide\n"
                  "[5] Exit\n";
 }
 

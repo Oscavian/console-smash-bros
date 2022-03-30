@@ -8,9 +8,9 @@
 
 Rick::Rick() {
     m_name = "Rick Astley";
-    m_baseAgility = 8;
-    m_baseAttackDamage = 8;
-    m_baseDefence = 4;
+    m_baseAgility = 8 + rand() % 1;
+    m_baseAttackDamage = 12;
+    m_baseDefence = 6;
     m_genericAbility = new Tackle();
     m_specialAbility = new RickRoll();
     m_splashArt = R"(

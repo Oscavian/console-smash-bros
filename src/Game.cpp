@@ -2,8 +2,6 @@
 // Created by oskar on 28.03.22.
 //
 
-#include <string>
-#include <iostream>
 #include "../header/Game.h"
 #include "../header/Duel.h"
 
@@ -25,13 +23,17 @@ void Game::mainMenu() {
             case 2:
                 // Multiplayer Fihgt
                 std::cout << "Not yet implemented";
+                sleep(1);
                 break;
             case 3:
-                //Character Gallery
+                //Character Statistics
                 std::cout << "Not yet implemented";
+                sleep(1);
+                break;
             case 4:
-                //options
+                //Guide
                 std::cout << "Nothing here";
+                sleep(1);
                 break;
             case 5:
                 std::cout << "Exiting Game...";
@@ -48,14 +50,12 @@ void Game::mainMenu() {
 int Game::getNumericInput() {
     int input;
 
-    bool valid = false;
+    while(!(std::cin >> input)){
+        std::cout << "Invalid. Enter a number.\n";
+        std::cin.clear();
+        std::cin.ignore(123, '\n');
+    }
 
-    do {
-        std::cin >> input;
-        if(input >= 0 && input <= 9){
-            valid = true;
-        }
-    } while (!valid);
     return input;
 }
 
@@ -68,11 +68,3 @@ Game::Game() {
 Game::~Game() {
     delete fight;
 }
-
-std::string Game::getStringInput() {
-    std::string input;
-    std::cin.clear();
-    std::getline(std::cin, input);
-    return input;
-}
-

@@ -4,7 +4,7 @@
 
 #include "../header/Fighter.h"
 
-Fighter::Fighter() : m_agilityModifier(0), m_damagePercent(0), m_baseAgility(0), m_baseDefence(0), m_defenceModifier(0), m_attackModifier(0), m_baseAttackDamage(0), m_genericAbility(
+Fighter::Fighter() : m_agilityModifier(0), m_damagePercent(0), m_baseAgility(0), m_baseDefence(0), m_defenceModifier(rand() % 5), m_attackModifier(rand() % 5), m_baseAttackDamage(0), m_genericAbility(
         nullptr), m_specialAbility(nullptr) {
 }
 
@@ -14,13 +14,13 @@ Fighter::~Fighter() {
 }
 
 int Fighter::takeDamage(int percentage) {
-    m_damagePercent += percentage - getDefence();
-    if (m_damagePercent < 0) {
-        m_damagePercent = 0;
-        return 0;
-    } else {
-        return percentage - getDefence();
+    int realDmg = percentage - getDefence();
+    if (realDmg < 0){
+        realDmg = 1;
     }
+    m_damagePercent += realDmg;
+
+    return realDmg;
 }
 
 void Fighter::restoreDamage(int percentage) {

@@ -6,8 +6,8 @@
 
 Crewmate::Crewmate(Ability* generic, Ability* special) {
     m_name = "Crewmate";
-    m_baseAgility = 7;
-    m_baseAttackDamage = 7;
+    m_baseAgility = 5 + rand() % 3;
+    m_baseAttackDamage = 12;
     m_baseDefence = 7;
     m_genericAbility = generic;
     m_specialAbility = special;

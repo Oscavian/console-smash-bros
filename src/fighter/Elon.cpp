@@ -8,8 +8,8 @@
 
 Elon::Elon() {
     m_name = "Elon Musk";
-    m_baseAgility = 4;
-    m_baseAttackDamage = 12;
+    m_baseAgility = 4 + rand() % 3;
+    m_baseAttackDamage = 15;
     m_baseDefence = 8;
     m_genericAbility = new Slap(); //TODO
     m_specialAbility = new Flamethrower(); //TODO
